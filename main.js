@@ -9,8 +9,7 @@
   <body>
     <div class="main">
     <div class="left">
-      <img src="images/person.jpg" alt="my pic" height="150" width="150">
-      <h1 id="name">Sesha Sharma</h1>
+      <h1>SESHA SHARMA</h1>
       <h2>seshasharma@gmail.com</h2>
     </div>
     <div class="right">
