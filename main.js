@@ -1,25 +1,80 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width,initial-scale-1.0">
-    <title>Resume</title>
-  </head>
-  <body>
-    <div class="main">
-    <div class="left">
-      <h1>SESHA SHARMA</h1>
-      <h2>seshasharma@gmail.com</h2>
-    </div>
-    <div class="right">
-      <h1>EDUCATION</h1>
+//ajax call initiation
+function jsondata(file,callback)
+{
+  var xhr= new XMLHttpRequest ();
+  xhr.overrideMimeType("application/json"); //type of file we are taking
+  xhr.open("GET",file,true); //get data from ajax
+  xhr.onreadystatechange=function()
+  {
+    if(xhr.readyState === 4 && xhr.status === 200)
+    {
+      callback(xhr.responseText);
+    }
+  };
+  xhr.send();
+}
+//function calling
+jsondata("data.json",function(text){
+  let data=JSON.parse(text);
+  console.log(data);
+  ba(data.basics);  //ba is constructor
+  educa(data.education);
+})
+//main div class calling from html
+var main=document.querySelector('.main');
+//var main=document.getElementById('main');
+//left div creation
+var left = document.createElement("div");
+left.classList.add("left");
+//id for left div
+left.setAttribute("id","left");
+//appending to main div
+main.appendChild(left);
+function ba(basic){
+  //image creation
+  var img=document.createElement("img");
+  img.src=basic.photo;
+  left.appendChild(img);
+  //name creation
+  var name=document.createElement("h1");
+  name.textContent=basic.name;
+  left.appendChild(name);
+  //email creation
+  var mail=document.createElement("h5");
+  mail.textContent=basic.email;
+  name.appendChild(mail);
+  //mobile creation
+  var mb=document.createElement("h4");
+  mb.textContent=basic.mobile;
+  mail.appendChild(mb);
+}
 
-    </div>
-
-    </div>
-    <script type="text/javascript" src="main.js">
-
-    </script>
-  </body>
-</html>
+//right div creation
+var right=document.createElement("div");
+right.classList.add("right");
+main.appendChild(right);
+//edu div creation
+var edu=document.createElement("h1");
+edu.textContent="Education Details:";
+edu.appendChild(document.createElement("HR"));
+right.appendChild(edu);
+//function calling
+function educa(education){
+  for(i in education)
+  {
+  var e1=document.createElement("div");
+  e1.classList.add("edu1");
+  e1.textContent=education[i].course;
+  //list creation
+ var ul=document.createElement("ul");
+ ul.classList.add("edu2");
+ for(j in education[i].institution)
+ {
+   var li=document.createElement("li");
+   li.textContent=education[i].institution[j];
+   edu.appendChild(e1);
+   e1.appendChild(ul);
+   ul.appendChild(li);
+ }
+}
+}
