@@ -30,7 +30,20 @@
       "2012-2013",
       "96"
     ]
-
   }
+],
+    "skills":[
+      {
+      "name":"Programming Languages",
+      "value":"C,C++,Java"
+    },
+    {
+      "name":"Web Technologies",
+      "value":"HTML,CSS,JS"
+    },
+    {
+      "name":"Operating System",
+      "value":"Linux,Windows"
+    }
 ]
 }
